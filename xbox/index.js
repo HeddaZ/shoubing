@@ -22,7 +22,7 @@ var allowedControllers = {0: 'xbox white', 1: 'xbox', 5: 'ds4', 8: 'ds4 white'};
 var controllerRebinds = '';
 var controllerId = defaultControllerId;
 var playerId = getParameter(0);
-if (!playerId || isNaN(playerId) || $.inArray(playerId, allowedPlayers) === -1) {
+if (!playerId || isNaN(playerId) || !allowedPlayers[playerId]) {
     playerId = defaultPlayerId;
 }
 
