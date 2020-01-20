@@ -94,11 +94,8 @@ var tester = {
         var els = document.querySelectorAll('.controller:not(.template)');
         for (var i = 0, el; el = els[i]; i++) {
             el.classList.add('disconnected');
-            if (pnumber == i + 1) {
-                $("#player-base").val(pnumber);
-            }
-            else {
-                el.classList.add('hidden');
+            if (playerId == i + 1) {
+                $("#player-base").val(playerId);
             }
         }
         var els2 = document.querySelectorAll('#player-base [value]');
@@ -117,7 +114,7 @@ var tester = {
             for (var i in gamepads) {
                 var gamepad = gamepads[i];
                 if (gamepad) {
-                    if (pnumber == i + 1) {
+                    if (playerId == i + 1) {
                         var el2 = document.getElementById('player-base');
                         el2.querySelector('option[value="' + i + '"]').disabled = false;
                         var newRawMap = document.createElement('div');
@@ -156,7 +153,7 @@ var tester = {
         }
 
         /*
-        if (pnumber == "") {
+        if (playerId == "") {
             if (padsConnected) {
                 document.querySelector('.nocon').classList.remove('visible');
                 document.querySelector('.pselect').classList.add('visible');
