@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * @author mwichary@google.com (Marcin Wichary), heddaz@live.com (Hedda Zhang)
+ * @author mwichary@google.com (Marcin Wichary)
+ * Modified by Hedda Zhang @ 2020.01
  */
 
 var tester = {

@@ -15,6 +15,7 @@
  *
  * @author mwichary@google.com (Marcin Wichary)
  * Modified by Christopher R.
+ * Modified by Hedda Zhang @ 2020.01
  */
 
 var gamepadSupport = {
