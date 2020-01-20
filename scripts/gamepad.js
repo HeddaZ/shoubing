@@ -433,17 +433,6 @@ var gamepadSupport = {
     // Call the tester with new state and ask it to update the visual
     // representation of a given gamepad.
     updateDisplay: function (gamepadId) {
-        if (playerId == "") {
-            var gamepadRaw = gamepadSupport.gamepadsRaw[gamepadId];
-            for (var b in gamepadRaw.buttons) {
-                tester.updateRawButton(gamepadRaw.buttons[b], gamepadId, b);
-            }
-            for (var a in gamepadRaw.axes) {
-                tester.updateRawAxis(gamepadRaw.axes[a], gamepadId, a);
-            }
-        }
-
-
         var gamepad = gamepadSupport.gamepads[gamepadId];
 
         // Update all the buttons (and their corresponding labels) on screen.

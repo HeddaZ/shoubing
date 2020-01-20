@@ -94,9 +94,6 @@ var tester = {
         var els = document.querySelectorAll('.controller:not(.template)');
         for (var i = 0, el; el = els[i]; i++) {
             el.classList.add('disconnected');
-            if (playerId == i + 1) {
-                $("#player-base").val(playerId);
-            }
         }
         var els2 = document.querySelectorAll('#player-base [value]');
         for (var i = 0, el; el = els2[i]; i++) {
@@ -114,34 +111,32 @@ var tester = {
             for (var i in gamepads) {
                 var gamepad = gamepads[i];
                 if (gamepad) {
-                    if (playerId == i + 1) {
-                        var el2 = document.getElementById('player-base');
-                        el2.querySelector('option[value="' + i + '"]').disabled = false;
-                        var newRawMap = document.createElement('div');
-                        newRawMap.innerHTML = document.querySelector('.raw-outputs.template').innerHTML;
-                        newRawMap.id = 'gamepad-map-' + i;
-                        newRawMap.className = 'raw-outputs';
-                        for (var b in gamepad.buttons) {
-                            var bEl = document.createElement('li');
-                            bEl.setAttribute('data-shortname', 'B' + b);
-                            bEl.setAttribute('data-name', 'button-' + b);
-                            bEl.setAttribute('data-info', JSON.stringify({id: i, type: "buttons", number: b}));
-                            bEl.title = 'Button ' + b;
-                            newRawMap.querySelector(".buttons").appendChild(bEl);
-                        }
-                        for (var a in gamepad.axes) {
-                            var aEl = document.createElement('li');
-                            aEl.setAttribute('data-shortname', 'Axis ' + a);
-                            aEl.setAttribute('data-name', 'axis-' + a);
-                            aEl.setAttribute('data-info', JSON.stringify({id: i, type: "axes", number: a}));
-                            aEl.title = 'Axis ' + a;
-                            newRawMap.querySelector(".axes").appendChild(aEl);
-                        }
-                        var nameEl = document.createElement('h2');
-                        nameEl.innerHTML = gamepad.id;
-                        newRawMap.insertBefore(nameEl, newRawMap.firstChild);
-                        document.querySelector('#output-display').appendChild(newRawMap);
+                    var el2 = document.getElementById('player-base');
+                    el2.querySelector('option[value="' + i + '"]').disabled = false;
+                    var newRawMap = document.createElement('div');
+                    newRawMap.innerHTML = document.querySelector('.raw-outputs.template').innerHTML;
+                    newRawMap.id = 'gamepad-map-' + i;
+                    newRawMap.className = 'raw-outputs';
+                    for (var b in gamepad.buttons) {
+                        var bEl = document.createElement('li');
+                        bEl.setAttribute('data-shortname', 'B' + b);
+                        bEl.setAttribute('data-name', 'button-' + b);
+                        bEl.setAttribute('data-info', JSON.stringify({id: i, type: "buttons", number: b}));
+                        bEl.title = 'Button ' + b;
+                        newRawMap.querySelector(".buttons").appendChild(bEl);
                     }
+                    for (var a in gamepad.axes) {
+                        var aEl = document.createElement('li');
+                        aEl.setAttribute('data-shortname', 'Axis ' + a);
+                        aEl.setAttribute('data-name', 'axis-' + a);
+                        aEl.setAttribute('data-info', JSON.stringify({id: i, type: "axes", number: a}));
+                        aEl.title = 'Axis ' + a;
+                        newRawMap.querySelector(".axes").appendChild(aEl);
+                    }
+                    var nameEl = document.createElement('h2');
+                    nameEl.innerHTML = gamepad.id;
+                    newRawMap.insertBefore(nameEl, newRawMap.firstChild);
+                    document.querySelector('#output-display').appendChild(newRawMap);
 
                     var el = document.getElementById('gamepad-' + i);
                     el.querySelector('.quadrant').classList.add('p' + i);
@@ -151,20 +146,6 @@ var tester = {
                 }
             }
         }
-
-        /*
-        if (playerId == "") {
-            if (padsConnected) {
-                document.querySelector('.nocon').classList.remove('visible');
-                document.querySelector('.pselect').classList.add('visible');
-                document.querySelector('.pselect select').disabled = false;
-            } else {
-                document.querySelector('.pselect').classList.remove('visible');
-                document.querySelector('.nocon').classList.add('visible');
-                document.querySelector('.pselect select').disabled = true;
-            }
-        }
-        */
     },
 
     queueButton: function (value, gamepadId, id) {
