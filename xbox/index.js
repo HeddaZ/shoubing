@@ -27,11 +27,15 @@ if (!playerId || $.inArray(playerId, allowedPlayers) !== -1) {
 }
 
 // 使用模板初始化手柄显示
-$("#gamepads .controller").append($("#gamepads .template").html());
-if (allowedControllers[controllerId]) {
+var gamepadHTML = $("#gamepads .template").html();
+$(".controller").append(gamepadHTML);
+
+if (allowedControllers[controllerId] && controllerId != defaultControllerId) {
     switchClass('#gamepads .controller', allowedControllers[defaultControllerId], allowedControllers[controllerId]);
 }
 switchClass('#gamepad-' + (playerId - 1), 'inactive', 'active');
+$('#gamepad-' + (playerId - 1)).addClass('active');
+$('.hide-me').hide();
 
 
 

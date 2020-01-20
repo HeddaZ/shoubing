@@ -62,7 +62,7 @@ h3 {
     display: block;
 }
 
-.hidden .inactive {
+.inactive, .hidden {
     display: none;
 }
 
