@@ -1,95 +1,6 @@
-var $genURL = $('#generated-url');
-$genURL.on('click', function (c) {
-    if (c.shiftKey) {
-        $(this).attr("data-clipboard-text", $(this).attr("data-clipboard-text").replace(/^(https)/, "http"));
-    } else {
-        $(this).attr("data-clipboard-text", $(this).attr("data-clipboard-text").replace(/^(http:)/, "https:"));
-    }
-    var clipboard = new Clipboard('#generated-url');
-
-    clipboard.on('success', function (e) {
-        $genURL.attr("data-message", "Copied!");
-        e.clearSelection();
-        clipboard.destroy();
-    });
-
-    clipboard.on('error', function () {
-        $genURL.attr("data-message", "Ctrl+C/Cmd+C to copy!");
-        clipboard.destroy();
-    });
-});
-
-$.fn.serializeObject = function () {
-    var o = {};
-    var a = this.serializeArray();
-    $.each(a, function () {
-//            console.log(this.value);
-        if (this.value !== 'undefined' && this.value !== "") {
-            o[this.name] = this.value;
-        }
-    });
-    return o;
-};
-
-$(function () {
-
-    //
-    var firstText = $('#url-form [name]').serializeObject();
-    $('#generate .url').text($.param(firstText));
-    $genURL.attr("data-clipboard-text", "https://gamepadviewer.com/?" + $.param(firstText));
-    $genURL.attr("data-message", "Click to copy, hold shift for HTTP link!");
-    $('#url-form').on("keyup change", function () {
-        $('#generate .url').text($.param($('#url-form [name]').serializeObject()));
-        $genURL.attr("data-clipboard-text", "https://gamepadviewer.com/?" + $.param($('#url-form [name]').serializeObject()));
-//            console.log($('#url-form').serializeObject());
-        return false;
-    });
-});
-$genURL.on("mouseenter", function () {
-    $(this).attr("data-message", "Click to copy, hold shift for HTTP link!");
-});
-$('#url-generate-reset').on("click", function (e) {
-    $('#url-form')[0].reset();
-    $('#generate .url').text($.param($('#url-form [name]').serializeObject()));
-    $genURL.attr("data-clipboard-text", "https://gamepadviewer.com/?" + $.param($('#url-form [name]').serializeObject()));
-});
-$('#color-picker').on('click', function (e) {
-    e.preventDefault();
-    $('#color-picker-input').click();
-});
-$('#color-picker-input').on('load change', function () {
-    $('html').css('background', this.value);
-});
-
-
 var gamepadHTML = $("#gamepads .template").html();
-var menuHTML = $("#modal-template .minimenu").html();
 $(".controller").append(gamepadHTML);
-$(".modal-container:not(#modal-template) .minimenu").append(menuHTML);
-$(".modal-container[id]:not(#modal-template)").each(function () {
-    var targetId = "#" + $(this).attr("id");
-    $(this).find(".modal .minimenu a[href=" + targetId + "]").closest('li').addClass("selected");
-});
 
-
-$("#skin-tc").click(function () {
-    $('#contact-form').find('select').val('skin');
-    setTimeout(function () {
-        $('#contact-form input[name=name]').focus()
-    }, 300);
-    ;
-});
-
-/*    $("#generated-url").mouseover(function () {
- var range, selection;
- window.getSelection && document.createRange ? (selection = window.getSelection(),
- range = document.createRange(),
- range.selectNodeContents($(this)[0]),
- selection.removeAllRanges(),
- selection.addRange(range)) : document.selection && document.body.createTextRange && (range = document.body.createTextRange(),
- range.moveToElementText($(this)[0]),
- range.select());
- });*/
 var mappingTemplate = $('#mapping-config .template .form-group');
 var mappingID = $('#mapping-config');
 function createMapEntry() {
@@ -99,20 +10,6 @@ function createMapEntry() {
     newMap.find("button").data('previous-value', "Click to Set");
     return newMap;
 }
-$('#prepend-mapping').click(function (e) {
-    e.preventDefault();
-    var newMap = createMapEntry();
-    newMap.prependTo("#mappings");
-});
-mappingID.on("click", ".del-config", function (e) {
-    e.preventDefault();
-    $(this).parent().remove();
-});
-mappingID.on("click", ".add-config", function (e) {
-    e.preventDefault();
-    var newMap = createMapEntry();
-    $(this).parent().after(newMap);
-});
 
 function createUIFromMapping(mappingObj) {
     $.each(mappingObj.mapping, function (key, value) {
@@ -180,78 +77,6 @@ function createUIFromMapping(mappingObj) {
     });
 }
 
-function buttonCapture(jqThis, mType) {
-    var previousVal = jqThis.data('previous-value');
-    var basePlayer = $('#player-base').val();
-    if (basePlayer == "None") {
-        jqThis.html('Please select a mapping base above');
-        return;
-    }
-    tester.EVENT_LISTEN = 1;
-    tester.MONITOR_ID = basePlayer;
-    tester.MONITOR_TYPE = "remapping";
-    tester.SNAPSHOT = $.extend(true, {}, gamepadSupport.gamepadsRaw[basePlayer]);
-    for (var b = 0; b < tester.SNAPSHOT.buttons.length; b++) {
-        tester.SNAPSHOT.buttons[b] = $.extend({}, gamepadSupport.gamepadsRaw[basePlayer].buttons[b]);
-    }
-    function tidyUp() {
-        tester.EVENT_LISTEN = 0;
-        tester.SNAPSHOT = {};
-        tester.MONITOR_TYPE = "";
-        jqThis.off();
-    }
-
-    var eventTimeout = setTimeout(function () {
-        tidyUp();
-        jqThis.html(previousVal);
-    }, 3000);
-    switch (mType) {
-        case "remapping":
-            jqThis.html("Waiting for Button Press...");
-            break;
-        case "value":
-            jqThis.html("Waiting on axis...");
-        default:
-    }
-
-    jqThis.on('GamepadPressed', function (e) {
-        var gpEv = e.originalEvent.detail;
-        var displayName = (jqThis.closest(".form-group").find(".axes-config").prop("checked") || jqThis.closest(".form-group").find("input[type=radio]:checked").val() == "dpad") ? gpEv.typeName + " " + gpEv.config.choice : gpEv.fullname;
-        if (basePlayer == gpEv.gamepad) {
-            clearTimeout(eventTimeout);
-            var configObj = gpEv.config;
-            var settingsObject = JSON.stringify(configObj);
-            jqThis.off();
-            if (mType == "value") {
-                tester.MONITOR_TYPE = mType;
-                jqThis.html("Please hold for 3 seconds...");
-                jqThis.on("GamepadPressed", function (e) {
-                    var axEv = e.originalEvent.detail;
-                    if (axEv.config.choiceType == configObj.choiceType && axEv.config.choice == configObj.choice) {
-                        jqThis.attr('data-value', axEv.value);
-                        jqThis.data('previous-value', axEv.value);
-                    }
-                });
-                setTimeout(function () {
-                    jqThis.off();
-                    jqThis.html(jqThis.attr('data-value'));
-                    tidyUp();
-                }, 3000);
-            } else {
-                jqThis.attr('data-object', settingsObject);
-                jqThis.data('previous-value', displayName);
-                jqThis.html(displayName);
-                tidyUp();
-            }
-        }
-    });
-}
-
-mappingID.on("click", "#mappings button", function () {
-    var rootThis = $(this);
-    var buttonType = rootThis.attr('data-button-type');
-    buttonCapture(rootThis, buttonType);
-});
 function createMapping() {
     var mapGroup = $("#mappings .form-group");
     mapGroup.find('.map-message').empty().before("<div class='map-message'></div>").remove();
@@ -333,32 +158,6 @@ function createMapping() {
     return localMapping;
 }
 
-function inputToggle(type, number, gamepad) {
-    if (!tester.ifDisabledExists(type, gamepad, number)) {
-        tester.DISABLED_INPUTS[gamepad] = tester.DISABLED_INPUTS[gamepad] || {};
-        tester.DISABLED_INPUTS[gamepad][type] = tester.DISABLED_INPUTS[gamepad][type] || {};
-        tester.DISABLED_INPUTS[gamepad][type][number] = true;
-    } else {
-        delete tester.DISABLED_INPUTS[gamepad][type][number];
-    }
-}
-
-$("#output-display").on("contextmenu", "li", function (e) {
-    e.preventDefault();
-    var configData = JSON.parse($(this).attr("data-info"));
-    $(this).toggleClass("disabled");
-    inputToggle(configData.type, configData.number, configData.id);
-});
-
-$("#apply-mapping").on("click", function () {
-    controllerRebinds = createMapping();
-});
-$("#export-mapping").on("click", function () {
-    $("#map-input").attr("value", JSON.stringify(createMapping()));
-    $("#map-input").keyup();
-    window.location = "#generate"
-});
-
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -384,19 +183,6 @@ function changeCssURL(cssURL) {
     }
 }
 
-var messages = [
-    'New in this version: <a href="#log">GameCube skin and some better remapping</a>.',
-    'If you refresh the page, you might get a new message!',
-    'Pro Tip: You can <a href="#about">use Browser Source instead of window capture</a> to show the gamepad',
-    'Pro Tip: You can access the Gamepad Viewer using <a href="#docs">special parameters</a>',
-    'Got an issue? <a href="https://discord.gg/0SdzYaRROBqfdd0v">Ask for help in the discord</a>!',
-    'Like what you see? Why not <a href="#donate">buy me a coffee!</a>',
-    'Sharing is caring, so <a href="https://twitter.com/home?status=Try%20out%20%40mrmcpowned%27s%20Gamepad%20Viewer!%20This%20thing%20is%20the%20bits%20for%20showing%20a%20controller%20on%20stream!%20%F0%9F%8E%AE%20https://gamepadviewer.com" target="_blank">tweet about the Gamepad Viewer!</a>',
-    'Join my <a href="https://discord.gg/0SdzYaRROBqfdd0v" target="_blank">Discord Server</a> if you\'re looking for a way to chat directly with me.'
-];
-//    var messages = ['Gamepad Viewer Survey: <a href="https://goo.gl/XF4VjL">https://goo.gl/XF4VjL</a>'];
-var message = messages[Math.floor(Math.random() * messages.length)];
-$('.update div span').html(message);
 
 var pnumber = getParameterByName('p');
 if (!pnumber)
@@ -427,45 +213,7 @@ function bindingSettings(paramData) {
 }
 var controllerRebinds = bindingSettings(getParameterByName('map'));
 
-////MsgPack related code
-////I'm not sure what I want to do with this yet, so it stays for now
-//function encode(json) {
-//    try {
-//        var data = (typeof json == "object") ? json: JSON.parse(json);
-//        var buffer = msgpack.encode(data);
-//        return buffer_to_hex(buffer);
-//    } catch (e) {
-//        console.log(e + "");
-//    }
-//}
-//
-//function buffer_to_hex(buffer) {
-//    return Array.prototype.map.call(buffer, function(val) {
-//        var hex = (val).toString(16).toUpperCase();
-//        if (val < 16) hex = "0" + hex;
-//        return hex;
-//    }).join(" ");
-//}
-//
-//function decode(string) {
-//    try {
-//        var array = hex_to_buffer(string);
-//        var buffer = new Uint8Array(array);
-//        return msgpack.decode(buffer);
-//    } catch (e) {
-//        console.log(e + "");
-//    }
-//}
-//
-//function hex_to_buffer(string) {
-//    return string.split(/\s+/).filter(function(chr) {
-//        return (chr !== "");
-//    }).map(function(chr) {
-//        return parseInt(chr, 16);
-//    });
-//}
 
-//    var noSurvey = getParameterByName('nosurvey');
 var noSurvey = 1;
 var allowedControllers = {
     0: 'xbox white',
@@ -479,13 +227,10 @@ var allowedControllers = {
     8: 'ds4 white',
     9: 'gc',
     10: 'ps white'
-
 };
 var allowedPlayers = [1, 2, 3, 4];
 var skinSwitch = (controlType !== '') ? allowedControllers[controlType] : 'xbox';
 var gpController = $('#gamepads .controller');
-//    console.log(pnumber);
-
 
 if (pnumber !== '' && $.inArray(pnumber, allowedPlayers !== -1)) {
     playernum = pnumber - 1;
