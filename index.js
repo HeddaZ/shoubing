@@ -8,9 +8,10 @@ function showMessage(message) {
 }
 
 $(function () {
-    let urlText = $('.url-text');
-    urlText.css('cursor', 'pointer')
-        .val(urlText.data('url'))
+    $('.url-text').css('cursor', 'pointer')
+        .each(function () {
+            $(this).val($(this).data('url'));
+        })
         .on('paste', function () {
             return false;
         })
