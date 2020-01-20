@@ -2,11 +2,11 @@ function getParameter(index) {
     if (isNaN(index)) {
         return '';
     }
-    let matches = [...location.search.matchAll(/[\?&]([^&#]*)/g)];
-    if (!matches[index]) {
+    let parameters = location.search.split(/\?|&/g);
+    if (!parameters[index + 1]) {
         return '';
     }
-    return decodeURIComponent(matches[index][1]);
+    return decodeURIComponent(parameters[index + 1]);
 }
 
 function switchClass(el, oldClass, newClass) {
@@ -24,10 +24,9 @@ var controllerId = defaultControllerId;
 var playerId = getParameter(0);
 if (!playerId || isNaN(playerId)) {
     playerId = defaultPlayerId;
-}
-else {
+} else {
     playerId = parseInt(playerId);
-    if (!allowedPlayers.includes(playerId)){
+    if (!allowedPlayers.includes(playerId)) {
         playerId = defaultPlayerId;
     }
 }

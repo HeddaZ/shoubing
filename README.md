@@ -1,4 +1,4 @@
-# 游戏手柄直播显示面板
+# 游戏手柄指令显示面板
 本软件开发思路来自`gamepadviewer.com`，经过一系列本地化和简化设计，更容易配合国内游戏直播的需求；  
 手柄面板与直播软件捕获的游戏画面组合后，使观众更容易理解主播对游戏的操作，大幅提升直播中的交互效率。
 
@@ -10,13 +10,13 @@
 
 
 ## 主要功能特性
-> 1. 统一入口地址: http://sb.shadowin.net
-> 1. 支持 XBox 手柄面板和按键显示，地址: http://sb.shadowin.net/xbox/
-> 2. 支持 PlayStation 手柄面板和按键显示，地址: http://sb.shadowin.net/ps/
-> 3. 本地识别和渲染：纯客户端应用程序，不依赖服务器，低延迟识别手柄操作；
-> 4. 使用灵活：支持 Chrome 浏览器本地测试，也支持 `OBS Studio Browser Plugin` 插件整合 `Open Broadcaster Software (OBS)` 使用；
-> 5. 高扩展性：跟随 Chrome (内核 Chromium) 升级可原始支持更多手柄类型；
-> 6. 强兼容性：支持各大直播平台。
+> 1. 统一入口: http://sb.plusii.com/
+> 2. 支持 XBox 手柄面板和按键显示，地址: http://sb.plusii.com/xbox/
+> 3. 支持 PlayStation 手柄面板和按键显示，地址: http://sb.plusii.com/ps/
+> 4. 本地识别和渲染：纯客户端应用程序，不依赖服务器，低延迟识别手柄操作；
+> 5. 使用灵活：支持 Chrome 浏览器本地测试，也支持 `OBS Studio Browser Plugin` 插件整合 `Open Broadcaster Software (OBS)` 使用；
+> 6. 高扩展性：跟随 Chrome (内核 Chromium) 升级可原始支持更多手柄类型；
+> 7. 强兼容性：支持各大直播平台。
 
 
 ## OBS 直播使用示例

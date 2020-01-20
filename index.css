@@ -1,0 +1,48 @@
+html, body {
+    font-family: sans-serif !important;
+}
+
+.display-none {
+    display: none;
+}
+
+.page-header {
+    padding: 20px 0px;
+}
+
+.row-spacer-sm {
+    padding: 10px 0px;
+}
+
+.row-spacer-md {
+    padding: 20px 0px;
+}
+
+.row-spacer-lg {
+    padding: 30px 0px;
+}
+
+.url-text {
+    color: #888888;
+    ime-mode: disabled;
+}
+
+.has-blue .form-control {
+    border-color: #13849a;
+}
+.has-blue .input-group-addon {
+    color: #13849a;
+    background-color: #ebf7f9;
+    border-color: #13849a;
+    font-weight: bold;
+}
+
+.has-green .form-control {
+    border-color: #0f8c77;
+}
+.has-green .input-group-addon {
+    color: #0f8c77;
+    background-color: #e4f7f4;
+    border-color: #0f8c77;
+    font-weight: bold;
+}
