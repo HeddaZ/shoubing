@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="67.41px" height="33.207px" viewBox="0 0 67.41 33.207" enable-background="new 0 0 67.41 33.207" xml:space="preserve">
+<g id="Menu_Pressed">
+	<path fill="#F5F5F5" stroke="#FFFFFF" stroke-miterlimit="10" d="M66.91,16.603c0,8.902-7.229,16.104-16.103,16.104
+		c-8.901,0-16.103-7.201-16.103-16.104c0-8.896,7.2-16.103,16.103-16.103C59.681,0.5,66.91,7.707,66.91,16.603z"/>
+	<g>
+		<rect x="43.612" y="11.978" fill="#929493" width="14.361" height="1.552"/>
+		<rect x="43.612" y="15.896" fill="#929493" width="14.361" height="1.553"/>
+		<rect x="43.612" y="19.707" fill="#929493" width="14.361" height="1.531"/>
+	</g>
+</g>
+<g id="Switcher_PRessed">
+	<path fill="#F5F5F5" stroke="#FFFFFF" stroke-miterlimit="10" d="M32.706,16.603c0,8.902-7.201,16.104-16.103,16.104
+		C7.731,32.707,0.5,25.505,0.5,16.603C0.5,7.707,7.731,0.5,16.603,0.5C25.505,0.5,32.706,7.707,32.706,16.603z"/>
+	<g>
+		<polygon fill="#929493" points="14.087,16.502 11.056,16.502 11.056,12.718 16.528,12.718 16.528,14.039 18.328,14.039 
+			18.328,10.979 9.437,10.979 9.437,18.369 14.087,18.369 		"/>
+		<path fill="#929493" d="M14.837,14.663v7.584h8.96v-7.584H14.837z M21.998,20.447h-5.47v-3.945h5.47V20.447z"/>
+	</g>
+</g>
+</svg>
