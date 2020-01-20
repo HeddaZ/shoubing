@@ -22,8 +22,14 @@ var allowedControllers = {0: 'xbox white', 1: 'xbox', 5: 'ds4', 8: 'ds4 white'};
 var controllerRebinds = '';
 var controllerId = defaultControllerId;
 var playerId = getParameter(0);
-if (!playerId || isNaN(playerId) || !allowedPlayers[playerId]) {
+if (!playerId || isNaN(playerId)) {
     playerId = defaultPlayerId;
+}
+else {
+    playerId = parseInt(playerId);
+    if (!allowedPlayers.includes(playerId)){
+        playerId = defaultPlayerId;
+    }
 }
 
 // 设置手柄类型
