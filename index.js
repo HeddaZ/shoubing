@@ -39,6 +39,8 @@ function notChrome() {
 }
 
 $(function () {
+    $('#copyrightYear').text(new Date().getFullYear());
+
     if (notChrome()) {
         showMessage('注意：本应用程序仅支持 Chrome 浏览器或 OBS 浏览器组件使用。', true);
     }
