@@ -52,7 +52,7 @@ $(function () {
             $(this).val($(this).data('url'));
         })
         .on('copy', function (e) {
-            showMessage(e.target.value + ' 已放入剪贴板！<br/>请将此地址填入 OBS 浏览器来源的 URL 中，并设置宽度 750 高度 630。');
+            showMessage(e.target.value + ' 已放入剪贴板！<br/>请将此地址填入 OBS 浏览器来源的 URL 中。');
             return true;
         })
         .on('paste cut', function () {
