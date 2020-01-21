@@ -8,8 +8,7 @@ function showMessage(message, warning) {
     if (warning) {
         messageBox.removeClass(infoBox).addClass(warningBox);
         messageBox.find('.message-icon').removeClass(infoIcon).addClass(warningIcon);
-    }
-    else {
+    } else {
         messageBox.removeClass(warningBox).addClass(infoBox);
         messageBox.find('.message-icon').removeClass(warningIcon).addClass(infoIcon);
     }

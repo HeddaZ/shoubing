@@ -11,14 +11,17 @@ html, body {
 }
 
 .page-footer {
-    margin: 30px 0px 0px 0px;
-    width: 500px;
-    height: 100px;
-    float: right;
+    margin-top: 60px;
+    text-align: center;
+}
 
-    font-size: 0.9em;
+.copyright {
+    font-size: 0.85em;
     color: #337ab7;
-    text-align: right;
+}
+
+.donate {
+    padding: 5px;
 }
 
 .row-spacer-sm {
