@@ -11,13 +11,19 @@ html, body {
 }
 
 .page-footer {
-    margin-top: 60px;
+    border-top: 1px solid #eee;
+    padding-top: 5px;
+    margin-top: 50px;
     text-align: center;
 }
 
 .copyright {
     font-size: 0.85em;
-    color: #337ab7;
+    color: #555555;
+}
+
+.copyright a {
+    color: #555555;
 }
 
 .donate {
