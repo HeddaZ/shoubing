@@ -5,7 +5,7 @@
 
 ## 原理简介
 本应用程序利用`Chrome`原生支持游戏手柄指令的特性，构建可视化的虚拟游戏手柄面板来显示实时的操作指令。
-直播软件 [OBS Studio] 内置的 [obs-browser] 插件本质上是一个基于 Chrome 内核的网页浏览器外壳；
+直播软件 [OBS Studio] 内置的 [Browser] 插件本质上是一个基于 Chrome 内核的网页浏览器外壳；
 因此，只要在 OBS 中添加一个 `浏览器` 组件，就相当于在直播画面中常驻了一个微型的 Chrome 窗口，设定好来源 URL，使其显示本应用程序的画面。
 
 
@@ -58,9 +58,14 @@
 ![测试-测试手柄](images/test-2.jpg)
   
   
-## 常见问题
-1. 
-
+## 疑难解答：若面板不响应手柄的操作指令？
+1. 确保手柄已正确连接到计算机，并且被系统识别；
+2. 若使用蓝牙连接，请断开所有其它的蓝牙设备；或改用线缆连接、适配器连接；
+3. 尝试重启 OBS，清除浏览器缓存，以便脚本重新初始化；
+4. 尝试访问网站 http://sb.plusii.com/，在线测试您的手柄；
+5. 若连接了多个手柄，请测试不同的手柄通道；在 OBS 中必须使用正确的手柄通道的 URL；
+![测试-切换手柄通道](images/test-3.jpg)
+6. 若手柄被 [Steam] 接管，可能对本程序功能造成影响。
   
   
 -------------------------------------------------  
@@ -69,6 +74,7 @@
 
 
 [OBS Studio]: https://obsproject.com/
-[obs-browser]: https://obsproject.com/forum/resources/browser-plugin.115/
+[Browser]: https://obsproject.com/forum/resources/browser-plugin.115/
+[Steam]: https://store.steampowered.com/
 [在此留爪]: https://github.com/HeddaZ/shoubing/issues
 [9812152]: tencent://message/?uin=9812152
