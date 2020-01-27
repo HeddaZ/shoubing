@@ -25,12 +25,12 @@ function openWindow(url, width, height, name) {
     }
     let widthFeature = '', heightFeature = '';
     if (width && !isNaN(width)) {
-        widthFeature = 'width=' + parseInt(width);
+        widthFeature = ',width=' + parseInt(width);
     }
     if (height && !isNaN(height)) {
-        heightFeature = 'height=' + parseInt(height);
+        heightFeature = ',height=' + parseInt(height);
     }
-    window.open(url, name, widthFeature + heightFeature + 'menubar=no,toolbar=no,location=yes,status=no,scrollbars=yes,dependent=no');
+    window.open(url, name, 'menubar=no,toolbar=no,location=yes,status=no,scrollbars=yes,dependent=no' + widthFeature + heightFeature);
 }
 
 function notChrome() {

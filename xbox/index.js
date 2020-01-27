@@ -9,9 +9,9 @@ function getParameter(index) {
     return decodeURIComponent(parameters[index + 1]);
 }
 
-function switchClass(el, oldClass, newClass) {
-    $(el).removeClass(oldClass);
-    $(el).addClass(newClass);
+function switchClass(selector, oldClass, newClass) {
+    $(selector).removeClass(oldClass);
+    $(selector).addClass(newClass);
 }
 
 // 配置参数
