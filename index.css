@@ -6,6 +6,18 @@ html, body {
     display: none;
 }
 
+.row-spacer-sm {
+    padding: 10px 0px;
+}
+
+.row-spacer-md {
+    padding: 20px 0px;
+}
+
+.row-spacer-lg {
+    padding: 30px 0px;
+}
+
 .panel-message {
     height: 80px;
 }
@@ -30,60 +42,86 @@ html, body {
     padding: 5px;
 }
 
-.row-spacer-sm {
-    padding: 10px 0px;
+.gamepad-menu {
+    cursor: default;
 }
 
-.row-spacer-md {
-    padding: 20px 0px;
-}
-
-.row-spacer-lg {
-    padding: 30px 0px;
-}
-
-.url-text {
-    color: #888888;
+.gamepad-url {
+    color: #999999;
     ime-mode: disabled;
     cursor: default;
 }
 
-.has-blue .form-control {
-    border-color: #13849a;
+/* 配色 gamepad-xbox
+25b7d3
+------
+e8f7fa
+1e95ac
+197a8c
+01758b
+*/
+
+.gamepad-xbox .form-control {
+    border-color: #01758b;
 }
 
-.has-blue .input-group-addon {
-    color: #13849a;
-    background-color: #ebf7f9;
-    border-color: #13849a;
-    font-weight: bold;
+.gamepad-xbox .btn-primary {
+    background-color: #1e95ac;
+    border-color: #01758b;
 }
 
-.has-blue .btn-primary {
-    background-color: #13849a;
-    border-color: #13667c;
+.gamepad-xbox .btn-primary:hover,
+.gamepad-xbox .btn-primary:active {
+    background-color: #197a8c;
+    border-color: #01758b;
 }
 
-.has-blue .btn-primary:hover {
-    background-color: #13667c;
+.gamepad-xbox .dropdown-toggle.btn-primary {
+    color: #01758b;
+    border-color: #01758b;
+    background-color: #e8f7fa;
+    border-right: none;
 }
 
-.has-green .form-control {
-    border-color: #0f8c77;
+.gamepad-xbox .open > .dropdown-toggle.btn-primary {
+    color: #ffffff;
+    background-color: #1e95ac;
+    border-color: #01758b;
 }
 
-.has-green .input-group-addon {
-    color: #0f8c77;
-    background-color: #e4f7f4;
-    border-color: #0f8c77;
-    font-weight: bold;
+/* 配色 gamepad-ps
+32bea6
+------
+eafbf8
+2b9f8b
+217a6b
+017964
+*/
+
+.gamepad-ps .form-control {
+    border-color: #017964;
 }
 
-.has-green .btn-primary {
-    background-color: #0f8c77;
-    border-color: #0f6e59;
+.gamepad-ps .btn-primary {
+    background-color: #2b9f8b;
+    border-color: #017964;
 }
 
-.has-green .btn-primary:hover {
-    background-color: #0f6e59;
+.gamepad-ps .btn-primary:hover,
+.gamepad-ps .btn-primary:active {
+    background-color: #217a6b;
+    border-color: #017964;
+}
+
+.gamepad-ps .dropdown-toggle.btn-primary {
+    color: #017964;
+    border-color: #017964;
+    background-color: #eafbf8;
+    border-right: none;
+}
+
+.gamepad-ps .open > .dropdown-toggle.btn-primary {
+    color: #ffffff;
+    background-color: #2b9f8b;
+    border-color: #017964;
 }

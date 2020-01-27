@@ -39,17 +39,27 @@ function notChrome() {
 
 $(function () {
     $('#copyrightYear').text(new Date().getFullYear());
-
     if (notChrome()) {
         showMessage('注意：本应用程序仅支持 Chrome 浏览器或 OBS 浏览器组件使用。', true);
     }
 
-    $('.url-text')
+    $('.gamepad-menu').click(function () {
+        let targetId = $(this).data('target');
+        $(targetId).data('value', $(this).data('value'))
+            .trigger('focus');
+    });
+
+    $('.gamepad-url')
         .each(function () {
-            $(this).val($(this).data('url'));
+            $(this).val($(this).data('value'));
+        })
+        .focus(function () {
+            $(this).val($(this).data('value'));
+            $(this).select();
+            return false;
         })
         .blur(function () {
-            $(this).val($(this).data('url'));
+            $(this).val($(this).data('value'));
         })
         .on('copy', function (e) {
             showMessage(e.target.value + ' 已放入剪贴板！<br/>请将此地址填入 OBS 浏览器来源的 URL 中。');
@@ -71,26 +81,30 @@ $(function () {
         .mousedown(function () {
             $(this).focus();
             return false;
-        })
-        .focus(function () {
-            $(this).select();
-            return false;
         });
 
-    $('#chromeButton').click(function () {
-        openWindow($(this).data('url'));
-        return false;
+    // 复制 URL
+    let clipboard = new ClipboardJS('.gamepad-copy', {
+        text: function (sender) {
+            let sourceId = $(sender).data('source');
+            return $(sourceId).data('value');
+        }
     });
-
-    $('.btn-test').click(function () {
-        let targetId = $(this).data('target');
-        openWindow($(targetId).data('url'), 770, 650, targetId);
-        return false;
+    clipboard.on('success', function (e) {
+        showMessage(e.text + ' 已放入剪贴板！<br/>请将此地址填入 OBS 浏览器来源的 URL 中。');
     });
-
-    // 剪贴板
-    let clipboard = new ClipboardJS('.btn-copy');
     clipboard.on('error', function (e) {
         showMessage('复制失败！<br/>请检查浏览器授权，或直接使用 Ctrl+C 复制。', true);
+    });
+    // 测试手柄
+    $('.gamepad-test').click(function () {
+        let sourceId = $(this).data('source');
+        openWindow($(sourceId).data('value'), 770, 650, sourceId);
+        return false;
+    });
+    // 下载
+    $('.btn-download').click(function () {
+        openWindow($(this).data('value'));
+        return false;
     });
 });
