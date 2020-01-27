@@ -99,7 +99,7 @@ $(function () {
     // 测试手柄
     $('.gamepad-test').click(function () {
         let sourceId = $(this).data('source');
-        openWindow($(sourceId).data('value'), 770, 650, sourceId);
+        openWindow($(sourceId).data('value'), 850, 700, sourceId);
         return false;
     });
     // 下载
