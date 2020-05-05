@@ -1,0 +1,348 @@
+﻿html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    line-height: 100%;
+    vertical-align: baseline;
+
+    font-family: sans-serif;
+    font-weight: 400;
+    overflow: hidden;
+    background: transparent !important;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    color: #FF5722;
+    text-decoration: underline;
+}
+
+b, strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+h2 {
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+#modals {
+    display: none;
+}
+
+.container {
+    width: 668px;
+    margin: 0 auto;
+}
+
+.clear {
+    clear: both;
+    display: block;
+}
+
+.active {
+    display: block;
+}
+
+.inactive {
+    display: none;
+}
+
+.controller {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 30px !important;
+    margin-left: 0px !important;
+}
+
+.controller.half {
+    margin-top: 0px !important;
+}
+
+/* 致动O */
+.controller.xbox {
+    background: url(images/base.svg);
+    background-repeat: no-repeat;
+    height: 630px;
+    width: 750px;
+}
+
+.xbox.disconnected {
+    background: url(images/disconnected.svg);
+    background-repeat: no-repeat;
+}
+
+.xbox.disconnected div {
+    display: none;
+}
+
+.xbox .triggers {
+    width: 539px;
+    height: 136px;
+    position: absolute;
+    left: 106px;
+    top: 3px;
+}
+
+.xbox .trigger {
+    width: 112px;
+    height: 136px;
+    background: url(images/trigger.svg);
+    background-repeat: no-repeat;
+    opacity: 0;
+}
+
+.xbox .trigger.left {
+    float: left;
+    background-position: 0 0;
+}
+
+.xbox .trigger.right {
+    float: right;
+    transform: rotateY(180deg);
+}
+
+.xbox .bumper {
+    width: 170px;
+    height: 61px;
+    background: url(images/bumper.svg);
+    background-repeat: no-repeat;
+    opacity: 0;
+}
+
+.xbox .bumpers {
+    position: absolute;
+    width: 536px;
+    height: 61px;
+    left: 107px;
+    top: 129px;
+}
+
+.xbox .bumper.pressed {
+    opacity: 1;
+}
+
+.xbox .bumper.left {
+    float: left;
+}
+
+.xbox .bumper.right {
+    float: right;
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.xbox .quadrant {
+    position: absolute;
+    background: url(images/quadrant.svg);
+    background-repeat: no-repeat;
+    height: 45px;
+    width: 45px;
+    top: 350px;
+    left: 370px;
+    z-index: 0;
+}
+
+.xbox .p0 {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+
+.xbox .p1 {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.xbox .p2 {
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
+.xbox .p3 {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.xbox .arrows {
+    position: absolute;
+    width: 176px;
+    height: 33px;
+    top: 242px;
+    left: 290px;
+}
+
+.xbox .back, .xbox .start {
+    background: url(images/start-select.svg);
+    background-repeat: no-repeat;
+    width: 33px;
+    height: 33px;
+    opacity: 0;
+}
+
+.xbox .back.pressed, .xbox .start.pressed {
+    opacity: 1;
+}
+
+.xbox .back {
+    float: left;
+}
+
+.xbox .start {
+    float: right;
+}
+
+.xbox .abxy {
+    position: absolute;
+    width: 153px;
+    height: 156px;
+    top: 192px;
+    left: 488px;
+}
+
+.xbox .button {
+    position: absolute;
+    background: url(images/abxy.svg);
+    background-repeat: no-repeat;
+    width: 48px;
+    height: 48px;
+}
+
+.xbox .button.pressed {
+    background-position-y: -48px;
+    margin-top: 5px;
+    opacity: 1;
+}
+
+.xbox .a {
+    background-position: 0 0;
+    top: 109px;
+    left: 53px;
+}
+
+.xbox .b {
+    background-position: -49px 0;
+    top: 59px;
+    right: 2px;
+}
+
+.xbox .x {
+    background-position: -98px 0;
+    top: 59px;
+    left: 1px;
+}
+
+.xbox .y {
+    background-position: -148px 0;
+    left: 52px;
+    top: 8px;
+}
+
+.xbox .sticks {
+    position: absolute;
+    width: 371px;
+    height: 196px;
+    top: 239px;
+    left: 144px;
+}
+
+.xbox .stick {
+    position: absolute;
+    background: url(images/stick.svg);
+    background-repeat: no-repeat;
+    background-position: -85px 0;
+    height: 83px;
+    width: 83px;
+}
+
+.xbox .stick.pressed {
+    background-position: 0 0;
+}
+
+.xbox .stick.left {
+    top: 0;
+    left: 0;
+}
+
+.xbox .stick.right {
+    top: 113px;
+    left: 288px;
+}
+
+.xbox .dpad {
+    position: absolute;
+    width: 110px;
+    height: 111px;
+    top: 345px;
+    left: 223px;
+}
+
+.xbox .face {
+    background: url(images/dpad.svg);
+    background-repeat: no-repeat;
+    position: absolute;
+    opacity: 0;
+}
+
+.xbox .face.pressed {
+    opacity: 1;
+}
+
+.xbox .face.up {
+    background-position: -50px 0;
+    left: 37px;
+    top: -9px;
+    width: 38px;
+    height: 45px;
+}
+
+.xbox .face.down {
+    background-position: 0 -40px;
+    left: 39px;
+    bottom: 6px;
+    width: 36px;
+    height: 45px;
+}
+
+.xbox .face.left {
+    background-position: 0 0;
+    width: 45px;
+    height: 38px;
+    top: 30px;
+    left: 0;
+}
+
+.xbox .face.right {
+    background-position: -40px -50px;
+    width: 50px;
+    height: 38px;
+    top: 30px;
+    right: -5px;
+}
+
+.xbox.half {
+    margin-top: -315px;
+}
+
+.xbox {
+    background: no-repeat center;
+}
