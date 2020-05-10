@@ -161,6 +161,7 @@ h3 {
     top: 350px;
     left: 370px;
     z-index: 0;
+    display: none;
 }
 
 .xbox .p0 {

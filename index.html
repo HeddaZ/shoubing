@@ -5,194 +5,219 @@
     <title>游戏手柄指令显示面板 - sb.plusii.com</title>
 
     <meta name="description"
-          content="本应用程序利用 Chrome 原生支持游戏手柄指令的特性，构建可视化的虚拟游戏手柄面板来显示实时的操作指令；与直播软件 OBS 捕获的游戏画面组合，使观众更容易理解主播对游戏的操作，提升直播中的交互效率。"/>
-    <meta name="author" content="HEDDAZ"/>
-    <meta property="og:title" content="游戏手柄指令显示面板"/>
-    <meta property="og:site_name" content="sb.plusii.com"/>
+          content="本应用程序利用 Chrome 原生支持游戏手柄指令的特性，构建可视化的虚拟游戏手柄面板来显示实时的操作指令；与直播软件 OBS 捕获的游戏画面组合，使观众更容易理解主播对游戏的操作，提升直播中的交互效率。" />
+    <meta name="author" content="HEDDAZ" />
+    <meta property="og:title" content="游戏手柄指令显示面板" />
+    <meta property="og:site_name" content="sb.plusii.com" />
     <meta property="og:description"
-          content="本应用程序利用 Chrome 原生支持游戏手柄指令的特性，构建可视化的虚拟游戏手柄面板来显示实时的操作指令；与直播软件 OBS 捕获的游戏画面组合，使观众更容易理解主播对游戏的操作，提升直播中的交互效率。"/>
-    <meta property="og:image" content="http://sb.plusii.com/images/ps.png"/>
-    <meta property="og:type" content="website"/>
+          content="本应用程序利用 Chrome 原生支持游戏手柄指令的特性，构建可视化的虚拟游戏手柄面板来显示实时的操作指令；与直播软件 OBS 捕获的游戏画面组合，使观众更容易理解主播对游戏的操作，提升直播中的交互效率。" />
+    <meta property="og:image" content="http://sb.plusii.com/images/ps.png" />
+    <meta property="og:type" content="website" />
 
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/clipboard.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="index.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
 </head>
 <body>
-<div class="page-header">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4 panel-message">
+                    <div class="alert center-block display-none" id="messageBox">
+                        <span class="message-icon glyphicon"></span>
+                        <span class="message-text"></span>
+                    </div>
+                </div>
+                <div class="col-lg-4"></div>
+            </div>
+        </div>
+    </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-4"></div>
-            <div class="col-lg-4 panel-message">
-                <div class="alert center-block display-none" id="messageBox">
-                    <span class="message-icon glyphicon"></span>
-                    <span class="message-text"></span>
-                </div>
-            </div>
-            <div class="col-lg-4"></div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="container-fluid">
-                <div class="row row-spacer-md"></div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <img alt="Xbox" src="images/xbox.png" class="img-responsive center-block"/>
+            <div class="col-lg-4">
+                <div class="container-fluid">
+                    <div class="row row-spacer-md"></div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <img alt="Xbox" src="images/xbox.png" class="img-responsive center-block" />
+                        </div>
                     </div>
-                </div>
-                <div class="row row-spacer-md"></div>
-                <div class="row">
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-10">
-                        <div class="form-group-lg gamepad-xbox">
-                            <div class="input-group">
-                                <div class="input-group-btn">
-                                    <button type="button" class="btn btn-lg btn-primary dropdown-toggle"
-                                            data-toggle="dropdown">
-                                        Xbox
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="gamepad-menu" data-target="#xboxUrl"
-                                               data-value="http://sb.plusii.com/xbox/">手柄 1 (默认)</a></li>
-                                        <li class="divider"></li>
-                                        <li><a class="gamepad-menu" data-target="#xboxUrl"
-                                               data-value="http://sb.plusii.com/xbox/?2">手柄 2</a>
-                                        </li>
-                                        <li><a class="gamepad-menu" data-target="#xboxUrl"
-                                               data-value="http://sb.plusii.com/xbox/?3">手柄 3</a>
-                                        </li>
-                                        <li><a class="gamepad-menu" data-target="#xboxUrl"
-                                               data-value="http://sb.plusii.com/xbox/?4">手柄 4</a>
-                                        </li>
-                                    </ul>
+                    <div class="row row-spacer-md"></div>
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
+                            <div class="form-group-lg gamepad-xbox">
+                                <div class="input-group">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-lg btn-primary dropdown-toggle"
+                                                data-toggle="dropdown">
+                                            Xbox
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="gamepad-menu" data-target="#xboxUrl"
+                                                   data-value="http://sb.plusii.com/xbox/">手柄 1 (默认)</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a class="gamepad-menu" data-target="#xboxUrl"
+                                                   data-value="http://sb.plusii.com/xbox/?2">手柄 2</a>
+                                            </li>
+                                            <li>
+                                                <a class="gamepad-menu" data-target="#xboxUrl"
+                                                   data-value="http://sb.plusii.com/xbox/?3">手柄 3</a>
+                                            </li>
+                                            <li>
+                                                <a class="gamepad-menu" data-target="#xboxUrl"
+                                                   data-value="http://sb.plusii.com/xbox/?4">手柄 4</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <input id="xboxUrl" type="text" class="form-control gamepad-url"
+                                           data-value="http://sb.plusii.com/xbox/" />
                                 </div>
-                                <input id="xboxUrl" type="text" class="form-control gamepad-url"
-                                       data-value="http://sb.plusii.com/xbox/"/>
                             </div>
                         </div>
+                        <div class="col-lg-1"></div>
                     </div>
-                    <div class="col-lg-1"></div>
-                </div>
-                <div class="row row-spacer-sm"></div>
-                <div class="row">
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-10">
-                        <div class="form-group gamepad-xbox text-center">
-                            <button class="btn btn-lg btn-primary gamepad-copy" type="button"
-                                    data-source="#xboxUrl">复制 URL
-                            </button>
-                            <button class="btn btn-lg btn-default gamepad-test" type="button" data-source="#xboxUrl">
-                                测试手柄
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-lg-1"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="container-fluid">
-                <div class="row row-spacer-md"></div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <img alt="PlayStation" src="images/ps.png" class="img-responsive center-block"/>
-                    </div>
-                </div>
-                <div class="row row-spacer-md"></div>
-                <div class="row">
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-10">
-                        <div class="form-group-lg gamepad-ps">
-                            <div class="input-group">
-                                <div class="input-group-btn">
-                                    <button type="button" class="btn btn-lg btn-primary dropdown-toggle"
-                                            data-toggle="dropdown">
-                                        PlayStation
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="gamepad-menu" data-target="#psUrl"
-                                               data-value="http://sb.plusii.com/ps/">手柄 1 (默认)</a></li>
-                                        <li class="divider"></li>
-                                        <li><a class="gamepad-menu" data-target="#psUrl"
-                                               data-value="http://sb.plusii.com/ps/?2">手柄 2</a>
-                                        </li>
-                                        <li><a class="gamepad-menu" data-target="#psUrl"
-                                               data-value="http://sb.plusii.com/ps/?3">手柄 3</a>
-                                        </li>
-                                        <li><a class="gamepad-menu" data-target="#psUrl"
-                                               data-value="http://sb.plusii.com/ps/?4">手柄 4</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <input id="psUrl" type="text" class="form-control gamepad-url"
-                                       data-value="http://sb.plusii.com/ps/"/>
+                    <div class="row row-spacer-sm"></div>
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
+                            <div class="form-group gamepad-xbox text-center">
+                                <button class="btn btn-lg btn-primary gamepad-copy" type="button"
+                                        data-source="#xboxUrl">
+                                    复制 URL
+                                </button>
+                                <button class="btn btn-lg btn-default gamepad-test" type="button" data-source="#xboxUrl">
+                                    测试手柄
+                                </button>
                             </div>
                         </div>
+                        <div class="col-lg-1"></div>
                     </div>
-                    <div class="col-lg-1"></div>
                 </div>
-                <div class="row row-spacer-sm"></div>
-                <div class="row">
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-10">
-                        <div class="form-group gamepad-ps text-center">
-                            <button class="btn btn-lg btn-primary gamepad-copy" type="button"
-                                    data-source="#psUrl">复制 URL
-                            </button>
-                            <button class="btn btn-lg btn-default gamepad-test" type="button" data-source="#psUrl">
-                                测试手柄
-                            </button>
+            </div>
+            <div class="col-lg-4">
+                <div class="container-fluid">
+                    <div class="row row-spacer-md"></div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <img alt="PlayStation" src="images/ps.png" class="img-responsive center-block" />
                         </div>
                     </div>
-                    <div class="col-lg-1"></div>
+                    <div class="row row-spacer-md"></div>
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
+                            <div class="form-group-lg gamepad-ps">
+                                <div class="input-group">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-lg btn-primary dropdown-toggle"
+                                                data-toggle="dropdown">
+                                            PlayStation
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="gamepad-menu" data-target="#psUrl"
+                                                   data-value="http://sb.plusii.com/ps/">手柄 1 (默认)</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a class="gamepad-menu" data-target="#psUrl"
+                                                   data-value="http://sb.plusii.com/ps/?2">手柄 2</a>
+                                            </li>
+                                            <li>
+                                                <a class="gamepad-menu" data-target="#psUrl"
+                                                   data-value="http://sb.plusii.com/ps/?3">手柄 3</a>
+                                            </li>
+                                            <li>
+                                                <a class="gamepad-menu" data-target="#psUrl"
+                                                   data-value="http://sb.plusii.com/ps/?4">手柄 4</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <input id="psUrl" type="text" class="form-control gamepad-url"
+                                           data-value="http://sb.plusii.com/ps/" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                    <div class="row row-spacer-sm"></div>
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
+                            <div class="form-group gamepad-ps text-center">
+                                <button class="btn btn-lg btn-primary gamepad-copy" type="button"
+                                        data-source="#psUrl">
+                                    复制 URL
+                                </button>
+                                <button class="btn btn-lg btn-default gamepad-test" type="button" data-source="#psUrl">
+                                    测试手柄
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="container-fluid">
-                <div class="row row-spacer-md"></div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <img alt="Chrome" src="images/chrome.png" class="img-responsive center-block"/>
+            <div class="col-lg-4">
+                <div class="container-fluid">
+                    <div class="row row-spacer-md"></div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <img alt="Chrome" src="images/chrome.png" class="img-responsive center-block" />
+                        </div>
                     </div>
-                </div>
-                <div class="row row-spacer-md"></div>
-                <div class="row">
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-10">
-                        <button type="button" class="btn btn-lg btn-default center-block btn-download"
-                                data-value="ChromeStandaloneSetup64.exe">
-                            <span class="glyphicon glyphicon-save"></span>
-                            下载 Chrome 浏览器
-                        </button>
+                    <div class="row row-spacer-md"></div>
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
+                            <button type="button" class="btn btn-lg btn-default center-block btn-download"
+                                    data-value="ChromeStandaloneSetup64.exe">
+                                <span class="glyphicon glyphicon-save"></span>
+                                下载 Chrome 浏览器
+                            </button>
+                        </div>
+                        <div class="col-lg-1"></div>
                     </div>
-                    <div class="col-lg-1"></div>
+                    <div class="row row-spacer-sm"></div>
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
+                            <div class="form-group gamepad-xbox text-center">
+                                <input id="zdoUrl" type="hidden" data-value="http://sb.plusii.com/zdo/" />
+                                <button class="btn btn-lg btn-warning gamepad-test" type="button" data-source="#zdoUrl">
+                                    【致动O】专属皮肤
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="page-footer">
-    <span class="copyright">
-        &copy; <span id="copyrightYear"></span>
-        <a href="https://github.com/heddaz/shoubing" target="_blank">HEDDAZ(大飞飞)</a>
-        | <span class="glyphicon glyphicon-comment"></span>
-        <a href="tencent://message/?uin=9812152">9812152</a>
-        | <a href="http://beian.miit.gov.cn/" target="_blank">苏ICP备08004088号</a>
-    </span>
-    <div class="donate">
-        <img alt="微信扫码捐赠" src="images/donate-wechat.jpg"/>
+    <div class="page-footer">
+        <span class="copyright">
+            &copy; <span id="copyrightYear"></span>
+            <a href="https://github.com/heddaz/shoubing" target="_blank">HEDDAZ(大飞飞)</a>
+            | <span class="glyphicon glyphicon-comment"></span>
+            <a href="tencent://message/?uin=9812152">9812152</a>
+            | <a href="http://beian.miit.gov.cn/" target="_blank">苏ICP备08004088号</a>
+        </span>
+        <div class="donate">
+            <img alt="微信扫码捐赠" src="images/donate-wechat.jpg" />
+        </div>
     </div>
-</div>
 
-<script type="text/javascript" src="index.js"></script>
-<script type="text/javascript" src="https://js.users.51.la/20610813.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="https://js.users.51.la/20610813.js"></script>
 </body>
 </html>
