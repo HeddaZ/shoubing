@@ -70,7 +70,8 @@
   
 -------------------------------------------------  
 使用中有任何问题和建议，欢迎 [在此留爪] 或 QQ [9812152]。  
-![微信扫码捐赠](images/donate-wechat.jpg)
+(聊表心意，金额随意)
+![微信扫码捐赠](http://images.iiwho.com/donate-wechat.jpg)
 
 
 [OBS Studio]: https://obsproject.com/
