@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8"/>
+    <title>PlayStation5 - 游戏手柄指令显示面板</title>
+
+    <meta name="description"
+          content="本应用程序利用 Chrome 原生支持游戏手柄指令的特性，构建可视化的虚拟游戏手柄面板来显示实时的操作指令；与直播软件 OBS 捕获的游戏画面组合，使观众更容易理解主播对游戏的操作，提升直播中的交互效率。"/>
+    <meta name="author" content="HEDDAZ"/>
+    <meta property="og:title" content="PlayStation5 - 游戏手柄指令显示面板"/>
+    <meta property="og:site_name" content="sb.plusii.com"/>
+    <meta property="og:description"
+          content="本应用程序利用 Chrome 原生支持游戏手柄指令的特性，构建可视化的虚拟游戏手柄面板来显示实时的操作指令；与直播软件 OBS 捕获的游戏画面组合，使观众更容易理解主播对游戏的操作，提升直播中的交互效率。"/>
+    <meta property="og:image" content="http://sb.plusii.com/images/ps5.png"/>
+    <meta property="og:type" content="website"/>
+
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/queue.js"></script>
+    <script type="text/javascript" src="../js/gamepad.js"></script>
+    <script type="text/javascript" src="../js/tester.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css"/>
+</head>
+<body>
+<div id="modals">
+    <div id="remap" class="modal-container">
+        <a class="bglink" href="#">
+            <div class="modal-bg"></div>
+        </a>
+
+        <div class="modal">
+            <header class="minimenu">
+            </header>
+            <header>
+                <a class="close" href="#">&times;</a>
+
+                <h1>Button Rebinding</h1>
+            </header>
+            <article>
+                <p>Please select the controller to use as a mapping base.
+                    <select id="player-base">
+                        <option>None</option>
+                        <option value="0" disabled>Player 1</option>
+                        <option value="1" disabled>Player 2</option>
+                        <option value="2" disabled>Player 3</option>
+                        <option value="3" disabled>Player 4</option>
+                    </select>
+                </p>
+                <div id="output-display">
+                    <div class="raw-outputs template">
+                        <div><h3>Axes</h3>
+                            <ul class="axes">
+                            </ul>
+                        </div>
+                        <div><h3>Buttons</h3>
+                            <ul class="buttons">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="mapping-config">
+                    <div class="template">
+                        <div class="form-group">
+                            <div class="map-message"></div>
+                            <input type="radio" name="targetType" value="buttons" checked>
+                            <input type="radio" name="targetType" value="axes">
+                            <input type="radio" name="targetType" value="dpad">
+                            <input type="checkbox" class="material-icons axes-config" value="false">
+                            <select name="buttons" value>
+                                <option title="Button 0" value="0">A/Cross</option>
+                                <option title="Button 1" value="1">B/Circle</option>
+                                <option title="Button 2" value="2">X/Square</option>
+                                <option title="Button 3" value="3">Y/Triangle</option>
+                                <option title="Button 4" value="4">LB/L1</option>
+                                <option title="Button 5" value="5">RB/R1</option>
+                                <option title="Button 6" value="6">LT/L2</option>
+                                <option title="Button 7" value="7">RT/R2</option>
+                                <option title="Button 8" value="8">Select/Back</option>
+                                <option title="Button 9" value="9">Start</option>
+                                <option title="Button 10" value="10">LS/L3</option>
+                                <option title="Button 11" value="11">RS/R3</option>
+                                <option title="Button 12" value="12">D-Pad Up</option>
+                                <option title="Button 13" value="13">D-Pad Down</option>
+                                <option title="Button 14" value="14">D-Pad Left</option>
+                                <option title="Button 15" value="15">D-Pad Right</option>
+                                <option title="Button 16" value="16">PS Button</option>
+                                <option title="Button 17" value="17">TouchPad Press</option>
+                            </select>
+                            <select name="axes" value>
+                                <option title="Axis 0" value="0">LS Horizontal</option>
+                                <option title="Axis 1" value="1">LS Vertical</option>
+                                <option title="Axis 2" value="2">RS Horizontal</option>
+                                <option title="Axis 3" value="3">RS Vertical</option>
+                            </select>
+                            <input type="checkbox" class="disable-item" value="true">
+                            <button data-tooltip="Positive Axis" data-button="positive" data-button-type="remapping"
+                                    data-object="">Click to Set
+                            </button>
+                            <button data-tooltip="Negative Axis" data-button="negative" data-button-type="remapping"
+                                    data-object="">Click to Set
+                            </button>
+                            <a href="#" class="material-icons del-config">remove_circle</a>
+                            <a href="#" class="material-icons add-config">add_circle</a>
+
+                            <div class="fix-panel fix-axes">
+                                <span>Fix Type: </span>
+                                <select name="fix-type">
+                                    <option value="trigger">Trigger (0 to 1)</option>
+                                    <option value="stick">Stick (-1 to 1)</option>
+                                </select>
+                                <button data-tooltip="Lowest Value" data-button="low-value" data-button-type="value">
+                                    Click to Set Value
+                                </button>
+                                <button data-tooltip="Highest Value" data-button="high-value" data-button-type="value">
+                                    Click to Set Value
+                                </button>
+                            </div>
+
+                            <ul class="fix-panel fix-dpad">
+                                <li><span>Up: </span>
+                                    <button data-button="up" data-button-type="value">Click to Set Value</button>
+                                </li>
+                                <li><span>Down: </span>
+                                    <button data-button="down" data-button-type="value">Click to Set Value</button>
+                                </li>
+                                <li><span>Left: </span>
+                                    <button data-button="left" data-button-type="value">Click to Set Value</button>
+                                </li>
+                                <li><span>Right: </span>
+                                    <button data-button="right" data-button-type="value">Click to Set Value</button>
+                                </li>
+                                <li><span>Up and Right: </span>
+                                    <button data-button="upright" data-button-type="value">Click to Set Value</button>
+                                </li>
+                                <li><span>Up and Left: </span>
+                                    <button data-button="upleft" data-button-type="value">Click to Set Value</button>
+                                </li>
+                                <li><span>Down and Right: </span>
+                                    <button data-button="downright" data-button-type="value">Click to Set Value</button>
+                                </li>
+                                <li><span>Down and Left: </span>
+                                    <button data-button="downleft" data-button-type="value">Click to Set Value</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="mappings"></div>
+                    <div class="button-group">
+                        <button id="export-mapping">Export Mapping to URL Generator</button>
+                        <button id="apply-mapping">Apply Mapping</button>
+                        <span class="clear"></span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="gamepads">
+    <div class="template">
+        <div class="triggers">
+            <span class="trigger left" data-name="button-left-shoulder-bottom"></span>
+            <span class="trigger right" data-name="button-right-shoulder-bottom"></span>
+            <span class="trigger-button left" data-name="button-left-shoulder-bottom-digital"></span>
+            <span class="trigger-button right" data-name="button-right-shoulder-bottom-digital"></span>
+            <span class="clear"></span>
+        </div>
+        <div class="bumpers">
+            <span class="bumper left" data-name="button-left-shoulder-top"></span>
+            <span class="bumper right" data-name="button-right-shoulder-top"></span>
+            <span class="clear"></span>
+        </div>
+        <div class="touchpad" data-name="touch-pad"></div>
+        <div class="quadrant"></div>
+        <div class="meta" data-name="button-meta"></div>
+        <div class="arrows">
+            <span class="back" data-name="button-select"></span>
+            <span class="start" data-name="button-start"></span>
+            <span class="clear"></span>
+        </div>
+        <div class="abxy">
+            <span class="button a" data-name="button-1"></span>
+            <span class="button b" data-name="button-2"></span>
+            <span class="button x" data-name="button-3"></span>
+            <span class="button y" data-name="button-4"></span>
+        </div>
+        <div class="sticks">
+            <span class="stick left" data-name="stick-1"></span>
+            <span class="stick right" data-name="stick-2"></span>
+        </div>
+        <div class="wheels">
+            <span class="wheel left" data-name="stick-1-wheel"></span>
+            <span class="wheel right" data-name="stick-2-wheel"></span>
+        </div>
+        <div class="dpad">
+            <span class="face up" data-name="button-dpad-top"></span>
+            <span class="face down" data-name="button-dpad-bottom"></span>
+            <span class="face left" data-name="button-dpad-left"></span>
+            <span class="face right" data-name="button-dpad-right"></span>
+        </div>
+        <div class="fstick" data-name="arcade-stick"></div>
+    </div>
+    <div class="controller half ds5 inactive" id="gamepad-0"></div>
+    <div class="controller half ds5 inactive" id="gamepad-1"></div>
+    <div class="controller half ds5 inactive" id="gamepad-2"></div>
+    <div class="controller half ds5 inactive" id="gamepad-3"></div>
+</div>
+
+<script type="text/javascript" src="index.js"></script>
+<script type="text/javascript">
+    tester.init();
+    gamepadSupport.init();
+</script>
+
+<script type="text/javascript" src="https://js.users.51.la/20610813.js"></script>
+</body>
+</html>

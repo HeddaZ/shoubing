@@ -28,13 +28,14 @@
 
 |手柄类型              |有线连接    |蓝牙连接    |适配器连接   |
 |-------              |-------    |-------    |-------     |
-|Xbox One S           |支持        |支持       |支持         |
-|Xbox One (或早期)     |支持        |不支持     |支持         |
-|DualShock 4          |支持        |支持       |支持         |
-|DualShock 3 (或早期)  |支持        |不支持     |不支持       |
+|Xbox 全系列手柄       |支持        |支持       |支持         |
+|DualShock 5          |支持        |支持       |不适用       |
+|DualShock 4          |支持        |支持       |不适用       |
+|PlayStation 早期      |支持        |不支持     |不支持       |
+|支持 XINPUT 的其它手柄 |支持        |支持       |支持        |
 
-*注：微软第二代适配器仅支持 Windows 10；而某些第三方适配器即兼容多个操作系统，又支持多种手柄类型。*
-
+*注：微软第二代适配器仅支持 Windows 10；可考虑某些第三方适配器，既兼容多种操作系统又支持多种手柄类型。*
+  
 2. 确认手柄已经被系统识别。打开`设备和打印机`可以设置游戏控制器。  
 ![在设备和打印机中设置游戏控制器](images/devices.jpg)
 
@@ -60,13 +61,15 @@
   
   
 ## 疑难解答：若面板不响应手柄的操作指令？
+0. 本工具理论上支持所有 XINPUT 模式的手柄；
 1. 确保手柄已正确连接到计算机，并且被系统识别（参考使用步骤）；
 2. 若使用`蓝牙连接`，请断开所有其它的蓝牙设备；或改用线缆连接、适配器连接；
 3. 尝试重启 OBS，清除浏览器缓存，以便脚本重新初始化；
 4. 尝试访问网站 http://sb.plusii.com/ 在线测试您的手柄；
 5. 若连接了多个手柄，请利用`测试手柄`确定正确的`通道`，在 OBS 中要使用对应的 URL；
 ![测试-切换手柄通道](images/test-3.jpg)
-6. 若手柄被 [Steam] 接管，可能干扰本程序功能（未明确）。
+6. PlayStation 手柄建议借助 [DS4Windows] 工具模拟为 XINPUT 模式；
+7. [Steam] 接管手柄可能导致输入指令无法被捕捉，请尝试在`控制器设置`中取消特定手柄的勾选。  
   
   
 -------------------------------------------------  
@@ -77,6 +80,7 @@
 
 [OBS Studio]: https://obsproject.com/
 [Browser]: https://obsproject.com/forum/resources/browser-plugin.115/
+[DS4Windows]: https://ryochan7.github.io/ds4windows-site/
 [Steam]: https://store.steampowered.com/
 [在此留爪]: https://github.com/HeddaZ/shoubing/issues
 [9812152]: tencent://message/?uin=9812152

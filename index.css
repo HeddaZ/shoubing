@@ -25,11 +25,12 @@ html, body {
 .page-footer {
     border-top: 1px solid #eee;
     padding-top: 5px;
-    margin-top: 50px;
+    margin-top: 40px;
     text-align: center;
 }
 
 .copyright {
+    margin-top: 5px;
     font-size: 0.85em;
     color: #555555;
 }
@@ -38,8 +39,23 @@ html, body {
     color: #555555;
 }
 
-.donate {
-    padding: 5px;
+.clear-both {
+    clear: both;
+}
+
+.attachments {
+    margin: 0 auto;
+    padding-top: 10px;
+    width: 450px;
+}
+
+.attachments img {
+    float: left;
+}
+
+.attachments .btn {
+    float: left;
+    margin: 2px 0 2px 10px;
 }
 
 .gamepad-menu {
@@ -53,12 +69,6 @@ html, body {
 }
 
 /* 配色 gamepad-xbox
-25b7d3
-------
-e8f7fa
-1e95ac
-197a8c
-01758b
 */
 
 .gamepad-xbox .form-control {
@@ -90,12 +100,6 @@ e8f7fa
 }
 
 /* 配色 gamepad-ps
-32bea6
-------
-eafbf8
-2b9f8b
-217a6b
-017964
 */
 
 .gamepad-ps .form-control {
@@ -124,4 +128,35 @@ eafbf8
     color: #ffffff;
     background-color: #2b9f8b;
     border-color: #017964;
+}
+
+/* 配色 gamepad-ps5
+*/
+
+.gamepad-ps5 .form-control {
+    border-color: #907626;
+}
+
+.gamepad-ps5 .btn-primary {
+    background-color: #b49537;
+    border-color: #907626;
+}
+
+.gamepad-ps5 .btn-primary:hover,
+.gamepad-ps5 .btn-primary:active {
+    background-color: #907626;
+    border-color: #907626;
+}
+
+.gamepad-ps5 .dropdown-toggle.btn-primary {
+    color: #907626;
+    border-color: #907626;
+    background-color: #fff7e0;
+    border-right: none;
+}
+
+.gamepad-ps5 .open > .dropdown-toggle.btn-primary {
+    color: #ffffff;
+    background-color: #b49537;
+    border-color: #907626;
 }
